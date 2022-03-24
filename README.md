@@ -1,7 +1,7 @@
 
 # mobile-manage-government-gateway-id-frontend
 
-This is a placeholder README.md for a new repository
+Acts as a frontend to enable users to manage their Government Gateway ID by redirecting through the relevant services
 
 ### License
 
