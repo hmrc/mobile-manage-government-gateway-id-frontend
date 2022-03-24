@@ -1,7 +1,7 @@
 
 # mobile-manage-government-gateway-id-frontend
 
-Acts as a frontend to enable users to manage their Government Gateway ID by redirecting through the relevant services.
+Acts as a frontend to enable users to manage their Government Gateway ID by redirecting through the relevant services
 
 ### License
 
