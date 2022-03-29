@@ -30,13 +30,13 @@ class IndexController @Inject() (
   val controllerComponents:                    MessagesControllerComponents,
   authorisedWithProfileLink:                   AuthorisedWithProfileLink,
   @Named("appName") val appName:               String,
-  @Named("bas-gateway") val basGatewayBaseUrl: String,
+  @Named("basGatewayUrl") val basGatewayBaseUrl: String,
   @Named("callbackUrl") val loginCallbackUrl:  String)
     extends FrontendBaseController
     with I18nSupport {
 
   def signIn: Action[AnyContent] = Action.async { implicit request =>
-    Future successful Redirect(basGatewayBaseUrl + "/bas-gateway/sign-in",
+    Future successful Redirect(basGatewayBaseUrl,
                                Map("continue_url" -> Seq(loginCallbackUrl), "origin" -> Seq(appName)))
   }
 

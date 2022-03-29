@@ -42,7 +42,7 @@ class IndexControllerSpec extends SpecBase {
       val request = FakeRequest(GET, routes.IndexController.signIn.url)
       val result: Future[Result] = controller.signIn.apply(request)
       status(result) mustEqual Status.SEE_OTHER
-      await(result.map(_.header.headers.get("Location"))).get mustEqual "gateway_url/bas-gateway/sign-in?continue_url=callback_url&origin=appName"
+      await(result.map(_.header.headers.get("Location"))).get mustEqual "gateway_url?continue_url=callback_url&origin=appName"
 
     }
   }

@@ -33,7 +33,7 @@ class FrontendAppConfig @Inject() (configuration: Configuration) {
   def feedbackUrl(implicit request: RequestHeader): String =
     s"$contactHost/contact/beta-feedback?service=$contactFormServiceIdentifier&backUrl=${SafeRedirectUrl(host + request.uri).encodedUrl}"
 
-  val basGatewayBaseUrl: String = configuration.get[Service]("microservice.services.bas-gateway").baseUrl
-  val loginCallbackUrl:  String = configuration.get[String]("microservice.services.auth.login-callback.url")
+  val basGatewaySignInUrl: String = configuration.get[String]("microservice.services.auth.sign-in.url")
+  val loginCallbackUrl:    String = configuration.get[String]("microservice.services.auth.login-callback.url")
 
 }
