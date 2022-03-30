@@ -16,8 +16,9 @@
 
 package controllers.action
 
+import controllers.routes
 import play.api.Logging
-import play.api.mvc.Results.{BadRequest, Forbidden}
+import play.api.mvc.Results.{BadRequest, Forbidden, Redirect}
 import play.api.mvc.{ActionBuilder, ActionRefiner, AnyContent, BodyParser, MessagesControllerComponents, Request, Result, WrappedRequest}
 import uk.gov.hmrc.auth.core.retrieve.v2.Retrievals.profile
 import uk.gov.hmrc.auth.core.{AuthConnector, AuthorisationException, ConfidenceLevel, InsufficientConfidenceLevel}
@@ -63,8 +64,14 @@ class AuthorisedWithProfileLinkImpl @Inject() (
   def authenticate()(implicit hc: HeaderCarrier): Future[Either[Result, Option[String]]] =
     af.authorise(ConfidenceLevel.L50, profile)
       .map {
-        case Some(profile) =>
-          Right(Some(profile))
+        case Some(profile) => {
+          if (profile.trim.isEmpty) {
+            logger.warn("Profile link not found")
+            Left(Forbidden("Profile link not found"))
+          } else {
+            Right(Some(profile))
+          }
+        }
         case None =>
           logger.warn("Profile link not found")
           Left(Forbidden("Profile link not found"))
@@ -75,7 +82,9 @@ class AuthorisedWithProfileLinkImpl @Inject() (
             "Forbidding access due to insufficient confidence level"
           )
           Left(Forbidden(s"Authorisation failure [${e.reason}]"))
-        case e: AuthorisationException => Left(Forbidden(s"Authorisation failure [${e.reason}]"))
+        case e: AuthorisationException => {
+          Left(Forbidden(s"Authorisation failure [${e.reason}]"))
+        }
 
       }
 

@@ -54,8 +54,21 @@ class AuthorisedWithProfileLinkSpec extends SpecBase with MockFactory with Resul
     }
   }
 
-  "return 403 when no NINO can be retrieved" in {
+  "return 403 when no profile link can be retrieved" in {
     val authConnectorStub = authConnectorStubThatWillReturn(None)
+
+    val authorised =
+      new AuthorisedWithProfileLinkImpl(authConnectorStub, stubMessagesControllerComponents())
+
+    val action = authorised { _ =>
+      Ok
+    }
+
+    status(action(FakeRequest())) shouldBe FORBIDDEN
+  }
+
+  "return 403 when an empty string is returned for the profile link" in {
+    val authConnectorStub = authConnectorStubThatWillReturn(Some(" "))
 
     val authorised =
       new AuthorisedWithProfileLinkImpl(authConnectorStub, stubMessagesControllerComponents())
