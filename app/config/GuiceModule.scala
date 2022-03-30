@@ -31,10 +31,7 @@ class GuiceModule(
 
   override def configure(): Unit = {
     bindConfigString("callbackUrl", "microservice.services.auth.login-callback.url")
-
-    bind(classOf[String])
-      .annotatedWith(named("bas-gateway"))
-      .toInstance(servicesConfig.baseUrl("bas-gateway"))
+    bindConfigString("basGatewayUrl", "microservice.services.auth.sign-in.url")
   }
 
   class DefaultConfig(val config: Config)
