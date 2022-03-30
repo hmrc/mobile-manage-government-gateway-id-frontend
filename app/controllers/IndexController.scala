@@ -41,7 +41,7 @@ class IndexController @Inject() (
   }
 
   def profile: Action[AnyContent] = authorisedWithProfileLink.async { implicit request =>
-    val profileLink: String = request.profileLink.get
+    val profileLink: String = request.profileLink.getOrElse(throw new IllegalArgumentException("Invalid profile"))
     Future successful Redirect(profileLink)
   }
 }
