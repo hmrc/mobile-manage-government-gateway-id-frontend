@@ -16,9 +16,8 @@
 
 package controllers.action
 
-import controllers.routes
 import play.api.Logging
-import play.api.mvc.Results.{BadRequest, Forbidden, Redirect}
+import play.api.mvc.Results.{BadRequest, Forbidden}
 import play.api.mvc.{ActionBuilder, ActionRefiner, AnyContent, BodyParser, MessagesControllerComponents, Request, Result, WrappedRequest}
 import uk.gov.hmrc.auth.core.retrieve.v2.Retrievals.profile
 import uk.gov.hmrc.auth.core.{AuthConnector, AuthorisationException, ConfidenceLevel, InsufficientConfidenceLevel}
@@ -27,7 +26,6 @@ import uk.gov.hmrc.play.http.HeaderCarrierConverter
 
 import javax.inject.Inject
 import scala.concurrent.{ExecutionContext, Future}
-import scala.language.postfixOps
 
 class RequestWithProfileLink[+A](
   request:         Request[A],
