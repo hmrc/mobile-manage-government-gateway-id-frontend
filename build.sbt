@@ -5,7 +5,7 @@ import uk.gov.hmrc.DefaultBuildSettings
 import uk.gov.hmrc.versioning.SbtGitVersioning.autoImport.majorVersion
 
 lazy val appName: String = "mobile-manage-government-gateway-id-frontend"
-val silencerVersion = "1.17.13"
+val silencerVersion = "1.7.16"
 
 lazy val root = (project in file("."))
   .enablePlugins(PlayScala, SbtAutoBuildPlugin, SbtDistributablesPlugin)
@@ -18,7 +18,7 @@ lazy val root = (project in file("."))
   .settings(majorVersion := 0)
   .settings(ThisBuild / useSuperShell := false)
   .settings(
-    scalaVersion := "2.13.8",
+    scalaVersion := "2.13.12",
     name := appName,
     RoutesKeys.routesImport ++= Seq(
       "models._",
