@@ -27,8 +27,6 @@ import play.api.i18n.{Messages, MessagesApi}
 import play.api.inject.guice.GuiceApplicationBuilder
 import play.api.test.FakeRequest
 
-import scala.language.implicitConversions
-
 trait SpecBase
     extends AnyFreeSpec
     with Matchers

@@ -16,12 +16,12 @@
 
 package controllers
 
-import akka.stream.Materializer
-import akka.stream.testkit.NoMaterializer
+import org.apache.pekko.stream.Materializer
+import org.apache.pekko.stream.testkit.NoMaterializer
 import base.SpecBase
 import controllers.action.{AuthorisedWithProfileLink, RequestWithProfileLink}
 import play.api.http.Status
-import play.api.mvc.{Action, AnyContent, BodyParser, PlayBodyParsers, Request, Result}
+import play.api.mvc.{AnyContent, BodyParser, PlayBodyParsers, Request, Result}
 import play.api.test.FakeRequest
 import play.api.test.Helpers._
 
