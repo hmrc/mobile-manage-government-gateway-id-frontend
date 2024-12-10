@@ -36,12 +36,10 @@ class IndexController @Inject() (
     with I18nSupport {
 
   def signIn: Action[AnyContent] = Action.async { implicit request =>
-    println(" inside old sign in")
     Future successful Redirect(routes.IndexController.newSignIn)
   }
 
   def newSignIn: Action[AnyContent] = Action.async { implicit request =>
-    println(" inside new sign in")
     Future successful Redirect(basGatewayBaseUrl,
                                Map("continue_url" -> Seq(loginCallbackUrl), "origin" -> Seq(appName)))
   }

@@ -32,7 +32,7 @@ class IndexControllerSpec extends SpecBase {
 
   "Sign-in" - {
 
-    "redirect to GG sign in page" in {
+    "redirect to new Sign in page" in {
 
       val controller = new IndexController(stubMessagesControllerComponents(),
                                            new AlwaysAuthorisedWithProfileLink(""),
