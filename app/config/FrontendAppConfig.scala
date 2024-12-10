@@ -19,7 +19,10 @@ package config
 import com.google.inject.{Inject, Singleton}
 import play.api.Configuration
 import play.api.mvc.RequestHeader
-import uk.gov.hmrc.play.bootstrap.binders.SafeRedirectUrl
+
+import uk.gov.hmrc.play.bootstrap.binders.RedirectUrl
+
+import java.net.URLEncoder
 
 @Singleton
 class FrontendAppConfig @Inject() (configuration: Configuration) {
@@ -30,8 +33,11 @@ class FrontendAppConfig @Inject() (configuration: Configuration) {
   private val contactHost                  = configuration.get[String]("contact-frontend.host")
   private val contactFormServiceIdentifier = "mobile-manage-government-gateway-id-frontend"
 
-  def feedbackUrl(implicit request: RequestHeader): String =
-    s"$contactHost/contact/beta-feedback?service=$contactFormServiceIdentifier&backUrl=${SafeRedirectUrl(host + request.uri).encodedUrl}"
+  def feedbackUrl(implicit request: RequestHeader): String = {
+
+    val encodedUrl = URLEncoder.encode(host + request.uri, "UTF-8")
+    s"$contactHost/contact/beta-feedback?service=$contactFormServiceIdentifier&backUrl=${RedirectUrl(encodedUrl)}"
+  }
 
   val basGatewaySignInUrl: String = configuration.get[String]("microservice.services.auth.sign-in.url")
   val loginCallbackUrl:    String = configuration.get[String]("microservice.services.auth.login-callback.url")
