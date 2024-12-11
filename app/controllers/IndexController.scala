@@ -27,15 +27,19 @@ import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendBaseController
 import scala.concurrent.Future
 
 class IndexController @Inject() (
-  val controllerComponents:                    MessagesControllerComponents,
-  authorisedWithProfileLink:                   AuthorisedWithProfileLink,
-  @Named("appName") val appName:               String,
+  val controllerComponents:                      MessagesControllerComponents,
+  authorisedWithProfileLink:                     AuthorisedWithProfileLink,
+  @Named("appName") val appName:                 String,
   @Named("basGatewayUrl") val basGatewayBaseUrl: String,
-  @Named("callbackUrl") val loginCallbackUrl:  String)
+  @Named("callbackUrl") val loginCallbackUrl:    String)
     extends FrontendBaseController
     with I18nSupport {
 
   def signIn: Action[AnyContent] = Action.async { implicit request =>
+    Future successful Redirect(routes.IndexController.newSignIn)
+  }
+
+  def newSignIn: Action[AnyContent] = Action.async { implicit request =>
     Future successful Redirect(basGatewayBaseUrl,
                                Map("continue_url" -> Seq(loginCallbackUrl), "origin" -> Seq(appName)))
   }
