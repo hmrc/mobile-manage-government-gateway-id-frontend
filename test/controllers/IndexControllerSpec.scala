@@ -42,7 +42,7 @@ class IndexControllerSpec extends SpecBase {
       val request = FakeRequest(GET, routes.IndexController.signIn.url)
       val result: Future[Result] = controller.signIn.apply(request)
       status(result) mustEqual Status.SEE_OTHER
-      await(result.map(_.header.headers.get("Location"))).get mustEqual "/mobile-manage-sign-in-details-frontend/sign-in"
+      await(result.map(_.header.headers.get("Location"))).get mustEqual routes.IndexController.newSignIn.url
 
     }
   }
@@ -68,7 +68,7 @@ class IndexControllerSpec extends SpecBase {
 
   "Manage-id" - {
 
-    "redirect to user's profile link" in {
+    "redirect to new profile url" in {
 
       val controller = new IndexController(stubMessagesControllerComponents(),
                                            new AlwaysAuthorisedWithProfileLink("www.myprofile.gov/user"),
@@ -77,6 +77,23 @@ class IndexControllerSpec extends SpecBase {
                                            "callback_url")
       val request = FakeRequest(GET, routes.IndexController.profile.url)
       val result: Future[Result] = controller.profile.apply(request)
+      status(result) mustEqual Status.SEE_OTHER
+      await(result.map(_.header.headers.get("Location"))).get mustEqual routes.IndexController.newProfile.url
+
+    }
+  }
+
+  "New Manage-id" - {
+
+    "redirect to user's profile link" in {
+
+      val controller = new IndexController(stubMessagesControllerComponents(),
+                                           new AlwaysAuthorisedWithProfileLink("www.myprofile.gov/user"),
+                                           "appName",
+                                           "gateway_url",
+                                           "callback_url")
+      val request = FakeRequest(GET, routes.IndexController.newProfile.url)
+      val result: Future[Result] = controller.newProfile.apply(request)
       status(result) mustEqual Status.SEE_OTHER
       await(result.map(_.header.headers.get("Location"))).get mustEqual "www.myprofile.gov/user"
 
