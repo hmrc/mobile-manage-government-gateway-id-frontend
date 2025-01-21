@@ -3,5 +3,5 @@
 GET         /mobile-manage-government-gateway-id-frontend/sign-in                                     controllers.IndexController.signIn
 GET         /mobile-manage-sign-in-details-frontend/sign-in                                           controllers.IndexController.newSignIn
 GET         /mobile-manage-government-gateway-id-frontend/manage-id                                   controllers.IndexController.profile
-
+GET         /mobile-manage-sign-in-details-frontend/manage-id                                         controllers.IndexController.newProfile
 GET         /mobile-manage-government-gateway-id-frontend/assets/*file                                controllers.Assets.versioned(path="/public", file: Asset)
