@@ -2,10 +2,10 @@ import sbt._
 
 object AppDependencies {
 
-  private val playBootstrapVersion = "9.11.0"
-  private val playFrontendVersion  = "11.12.0"
+  private val playBootstrapVersion = "10.1.0"
+  private val playFrontendVersion  = "12.8.0"
   private val pegdownVersion       = "1.6.0"
-  private val scalaMockVersion     = "5.2.0"
+  private val scalaMockVersion     = "7.4.0"
 
   val compile = Seq(
     play.sbt.PlayImport.ws,
