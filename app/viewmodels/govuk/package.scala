@@ -18,7 +18,6 @@ package viewmodels
 
 package object govuk {
 
-  object all
-    extends BackLinkFluency
+  object all extends BackLinkFluency
 
 }

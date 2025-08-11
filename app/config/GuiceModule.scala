@@ -22,10 +22,7 @@ import play.api.{Configuration, Environment}
 import uk.gov.hmrc.http.HeaderCarrier.Config
 import uk.gov.hmrc.play.bootstrap.config.ServicesConfig
 
-class GuiceModule(
-  environment:   Environment,
-  configuration: Configuration)
-    extends AbstractModule {
+class GuiceModule(environment: Environment, configuration: Configuration) extends AbstractModule {
 
   val servicesConfig = new ServicesConfig(configuration)
 

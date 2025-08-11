@@ -27,10 +27,10 @@ import java.net.URLEncoder
 @Singleton
 class FrontendAppConfig @Inject() (configuration: Configuration) {
 
-  val host:    String = configuration.get[String]("host")
+  val host: String = configuration.get[String]("host")
   val appName: String = configuration.get[String]("appName")
 
-  private val contactHost                  = configuration.get[String]("contact-frontend.host")
+  private val contactHost = configuration.get[String]("contact-frontend.host")
   private val contactFormServiceIdentifier = "mobile-manage-government-gateway-id-frontend"
 
   def feedbackUrl(implicit request: RequestHeader): String = {
@@ -40,6 +40,6 @@ class FrontendAppConfig @Inject() (configuration: Configuration) {
   }
 
   val basGatewaySignInUrl: String = configuration.get[String]("microservice.services.auth.sign-in.url")
-  val loginCallbackUrl:    String = configuration.get[String]("microservice.services.auth.login-callback.url")
+  val loginCallbackUrl: String = configuration.get[String]("microservice.services.auth.login-callback.url")
 
 }
