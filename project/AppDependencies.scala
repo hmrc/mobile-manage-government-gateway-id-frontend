@@ -4,7 +4,6 @@ object AppDependencies {
 
   private val playBootstrapVersion = "10.1.0"
   private val playFrontendVersion  = "12.8.0"
-  private val pegdownVersion       = "1.6.0"
   private val scalaMockVersion     = "7.4.0"
 
   val compile = Seq(
@@ -15,7 +14,6 @@ object AppDependencies {
 
   val test = Seq(
     "uk.gov.hmrc"   %% "bootstrap-test-play-30" % playBootstrapVersion,
-    "org.pegdown"   % "pegdown"                 % pegdownVersion,
     "org.scalamock" %% "scalamock"              % scalaMockVersion
   ).map(_ % "test, it")
 
