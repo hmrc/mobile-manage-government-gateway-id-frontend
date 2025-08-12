@@ -17,11 +17,11 @@
 package controllers
 
 import base.SpecBase
-import controllers.action.AuthorisedWithProfileLinkImpl
+import controllers.action.{AuthorisedWithProfileLinkImpl, RequestWithProfileLink}
 import org.scalamock.scalatest.MockFactory
-import org.scalatest.matchers.should.Matchers.convertToAnyShouldWrapper
+import org.scalatest.matchers.should.Matchers.*
 import play.api.http.Status.FORBIDDEN
-import play.api.mvc.Results
+import play.api.mvc.{AnyContent, Results}
 import play.api.test.FakeRequest
 import play.api.test.Helpers.{await, contentAsString, defaultAwaitTimeout, status, stubMessagesControllerComponents}
 import uk.gov.hmrc.auth.core.authorise.Predicate
@@ -44,7 +44,7 @@ class AuthorisedWithProfileLinkSpec extends SpecBase with MockFactory with Resul
         new AuthorisedWithProfileLinkImpl(authConnectorStub, stubMessagesControllerComponents())
 
       var capturedLink: Option[String] = None
-      val action = authorised { request =>
+      val action = authorised { (request: RequestWithProfileLink[AnyContent]) =>
         capturedLink = request.profileLink
         Ok
       }
@@ -60,7 +60,7 @@ class AuthorisedWithProfileLinkSpec extends SpecBase with MockFactory with Resul
     val authorised =
       new AuthorisedWithProfileLinkImpl(authConnectorStub, stubMessagesControllerComponents())
 
-    val action = authorised { _ =>
+    val action = authorised { (_: RequestWithProfileLink[AnyContent]) =>
       Ok
     }
 
@@ -73,7 +73,7 @@ class AuthorisedWithProfileLinkSpec extends SpecBase with MockFactory with Resul
     val authorised =
       new AuthorisedWithProfileLinkImpl(authConnectorStub, stubMessagesControllerComponents())
 
-    val action = authorised { _ =>
+    val action = authorised { (_: RequestWithProfileLink[AnyContent]) =>
       Ok
     }
 
@@ -87,7 +87,7 @@ class AuthorisedWithProfileLinkSpec extends SpecBase with MockFactory with Resul
     val authorised =
       new AuthorisedWithProfileLinkImpl(authConnectorStub, stubMessagesControllerComponents())
 
-    val action = authorised { _ =>
+    val action = authorised { (_: RequestWithProfileLink[AnyContent]) =>
       Ok
     }
 
@@ -102,7 +102,7 @@ class AuthorisedWithProfileLinkSpec extends SpecBase with MockFactory with Resul
     val authorised =
       new AuthorisedWithProfileLinkImpl(authConnectorStub, stubMessagesControllerComponents())
 
-    val action = authorised { _ =>
+    val action = authorised { (_: RequestWithProfileLink[AnyContent]) =>
       Ok
     }
 

@@ -27,18 +27,13 @@ import uk.gov.hmrc.play.http.HeaderCarrierConverter
 import javax.inject.Inject
 import scala.concurrent.{ExecutionContext, Future}
 
-class RequestWithProfileLink[+A](
-  request:         Request[A],
-  val profileLink: Option[String])
-    extends WrappedRequest[A](request)
+class RequestWithProfileLink[+A](request: Request[A], val profileLink: Option[String]) extends WrappedRequest[A](request)
 
-trait AuthorisedWithProfileLink
-    extends ActionBuilder[RequestWithProfileLink, AnyContent]
-    with ActionRefiner[Request, RequestWithProfileLink]
+trait AuthorisedWithProfileLink extends ActionBuilder[RequestWithProfileLink, AnyContent] with ActionRefiner[Request, RequestWithProfileLink]
 
 class AuthorisedWithProfileLinkImpl @Inject() (
-  af:                            AuthConnector,
-  mcc:                           MessagesControllerComponents
+  af: AuthConnector,
+  mcc: MessagesControllerComponents
 )(implicit val executionContext: ExecutionContext)
     extends AuthorisedWithProfileLink
     with Logging {
@@ -52,10 +47,10 @@ class AuthorisedWithProfileLinkImpl @Inject() (
       auth: Either[Result, Option[String]] <- authenticate()
 
       response = auth match {
-        case Right(Some(profileLink)) => Right(new RequestWithProfileLink(request, Some(profileLink)))
-        case Left(result)             => Left(result)
-        case _                        => Left(BadRequest("Unexpected response from authentication"))
-      }
+                   case Right(Some(profileLink)) => Right(new RequestWithProfileLink(request, Some(profileLink)))
+                   case Left(result)             => Left(result)
+                   case _                        => Left(BadRequest("Unexpected response from authentication"))
+                 }
     } yield response
   }
 
