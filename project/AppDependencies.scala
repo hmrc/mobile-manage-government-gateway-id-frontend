@@ -2,7 +2,7 @@ import sbt._
 
 object AppDependencies {
 
-  private val playBootstrapVersion = "10.1.0"
+  private val playBootstrapVersion = "10.3.0"
   private val playFrontendVersion  = "12.11.0"
   private val scalaMockVersion     = "7.4.0"
 
