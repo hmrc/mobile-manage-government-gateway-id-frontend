@@ -4,7 +4,7 @@ object AppDependencies {
 
   private val playBootstrapVersion = "10.5.0"
   private val playFrontendVersion  = "12.28.0"
-  private val scalaMockVersion     = "7.4.0"
+  private val scalaMockVersion     = "7.5.3"
 
   val compile = Seq(
     play.sbt.PlayImport.ws,
