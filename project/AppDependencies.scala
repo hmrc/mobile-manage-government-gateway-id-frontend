@@ -2,8 +2,8 @@ import sbt.*
 
 object AppDependencies {
 
-  private val playBootstrapVersion = "10.7.0"
-  private val playFrontendVersion = "12.31.0"
+  private val playBootstrapVersion = "10.8.0"
+  private val playFrontendVersion = "13.9.0"
   private val scalaMockVersion = "7.5.3"
 
   val compile = Seq(
